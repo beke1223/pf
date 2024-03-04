@@ -3,14 +3,16 @@ import person from "../assets/person.jpg";
 const About = () => {
   return (
     <div className="xl:py-20">
-      <div className="grid grid-cols-1 xl:grid-cols-2 my-10 space-y-5 xl:space-x-28  px-5 xl:px-20">
-        <div className=" w-full space-y-5 px-5 py-10 mx-auto rounded-xl  border-2 border-red-500 ">
+      <div className="grid grid-cols-1 xl:grid-cols-3 my-10 space-y-5 xl:space-x-28  md:px-5 xl:px-20">
+        <div className=" w-full space-y-5 px-5 mx-auto  col-span-2">
           <div className="py-5 xl:px-20">
             <div className="xl:py-10 xl:px-20">
-              <h2 className="text-lg font-semibold">Hello I'm a</h2>
-              <h1 className="text-2xl font-semibold">Software Developer</h1>
+              <h2 className="text-lg font-semibold text-blue-400">Hello, i am</h2>
+
+              <h1 className="text-4xl md:text-6xl font-bold">Bekalu Atto</h1>
+              <h1 className="text-5xl md:text-6xl w-screen font-bold text-slate-500">Software Developer</h1>
             </div>
-            <div className="xl:px-20">
+            <div className="xl:px-20 mt-4 md:mt-auto">
               <p className="text-md ">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam
                 quibusdam ab quis ex, id laborum dolores odio adipisci
@@ -19,14 +21,14 @@ const About = () => {
               </p>
             </div>
             <div className="xl:px-20 mt-5">
-              <button className="bg-red-500 text-white font-semibold hover:bg-red-300 py-3 px-5 rounded-lg">
+              <button className="bg-red-500 text-white font-semibold hover:bg-white hover:text-red-500 hover:border hover:border-red-500 duration-300 py-3 px-5 rounded-lg">
                 Contact me
               </button>
             </div>
           </div>
         </div> 
-          <div className=" w-full xl:w-1/2  ">
-            <img src={person} alt="Bekalu Atto" className="" />
+          <div className=" w-full xl:w-2/3 hidden md:block">
+            <img src={person} alt="Bekalu Atto" className="rounded-full mt-14" />
           </div>
          
       </div>

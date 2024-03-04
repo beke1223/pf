@@ -9,7 +9,7 @@ const ContactMe = () => {
         </h2>
       </div>
 
-      <div className="px-20 grid md:grid-cols-2 w-full h-full py-20">
+      <div className="space-y-3 px-3 md:px-20 grid md:grid-cols-2 w-full h-full py-20">
         <div className="flex">
           <img src={contact_me} alt="contact me" className="" />
         </div>
@@ -22,7 +22,7 @@ const ContactMe = () => {
             className="outline-none border w-full px-5 py-3"
           />
           <textarea name="message" id="message" cols="30" rows="10" className="border w-full outline-none p-5" placeholder="Enter Your message"></textarea>
-        <button className="bg-blue-950 py-3 px-5 text-white rounded-md">Send Message</button>
+        <button className="bg-blue-950 py-3 px-5 text-white rounded-md  hover:bg-white hover:text-blue-950 hover:border hover:border-blue-950 duration-300">Send Message</button>
         </div>
       </div>
     </div>

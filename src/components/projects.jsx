@@ -1,25 +1,28 @@
 import React from "react";
 import skill from "../assets/lang/skill.png";
-import { Link } from "react-scroll";
+import { Link } from "react-router-dom";
 
 const projectSet = [
   {
     cover: skill,
-    desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci veritatis tenetur beatae saepe accusantium dolores officiis nobis dignissimos perspiciatis reiciendis deserunt totam accusamus modi eligendi aliquid placeat, molestias est inventore!",
+    desc: "1Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci veritatis tenetur beatae saepe accusantium dolores officiis nobis dignissimos perspiciatis reiciendis deserunt totam accusamus modi eligendi aliquid placeat, molestias est inventore!",
     path: "#",
     title: "Project",
+    for: "mobile",
   },
   {
     cover: skill,
-    desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci veritatis tenetur beatae saepe accusantium dolores officiis nobis dignissimos perspiciatis reiciendis deserunt totam accusamus modi eligendi aliquid placeat, molestias est inventore!",
+    desc: "2Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci veritatis tenetur beatae saepe accusantium dolores officiis nobis dignissimos perspiciatis reiciendis deserunt totam accusamus modi eligendi aliquid placeat, molestias est inventore!",
     path: "#",
     title: "Project",
+    for: "web",
   },
   {
     cover: skill,
-    desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci veritatis tenetur beatae saepe accusantium dolores officiis nobis dignissimos perspiciatis reiciendis deserunt totam accusamus modi eligendi aliquid placeat, molestias est inventore!",
+    desc: "3Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci veritatis tenetur beatae saepe accusantium dolores officiis nobis dignissimos perspiciatis reiciendis deserunt totam accusamus modi eligendi aliquid placeat, molestias est inventore!",
     path: "#",
     title: "Project",
+    for: "mobile",
   },
 ];
 
@@ -42,8 +45,10 @@ const Projects = () => {
               <img src={project.cover} alt={project.title} />
               <p>{project.title}</p>
               <p>{project.desc}</p>
-              <Link to="./ProjectDetail">
-                <button className="border py-3">Learn more ...</button>
+              <Link to="/projectDetail" state={index}>
+                <button className="border py-3 px-5  hover:bg-white hover:text-blue-950 hover:border hover:border-blue-950 duration-300">
+                  Learn more ...
+                </button>
               </Link>
             </div>
           );

@@ -7,7 +7,7 @@ import { FaGithub } from "react-icons/fa6";
 
 const Footer = () => {
   return (
-    <div className="flex justify-center mt-10 w-full bg-blue-950 h-60 items-center rounded-tl-full">
+    <div className="flex justify-center mt-10 w-full bg-blue-950 h-28 md:h-60 items-center rounded-tl-full">
       <div className="space-y-4">
         <h2 className="font-semibold text-lg text-white text-center">
           Social Media

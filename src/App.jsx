@@ -1,18 +1,57 @@
-import { BrowserRouter, Route, Router, Routes, Switch } from "react-router-dom";
+import { BrowserRouter, Route, Router, Routes } from "react-router-dom";
 import Footer from "./components/footer";
 import NavBar from "./components/navbar";
 import HomePage from "./components/homepage";
-import ProjectDetails from "./components/individual_projects";
+import { ProjectProvider } from "./components/context";
+import ProjectDetail from "./components/project_details";
+import { useRef } from "react";
+import CV from "./components/pdf_viewer";
 function App() {
+  const skillRef = useRef(null);
+  const projectsRef = useRef(null);
+  const contact_meRef = useRef(null);
+
+  const scrollToSection = (ref) => {
+    console.log("from scrollToSection", ref);
+    ref.current.scrollIntoView({ behavior: "smooth" });
+
+    // Add 'active' class to trigger the transition after scrolling
+    ref.current.classList.add("active");
+
+    // Remove 'active' class from other sections
+    [skillRef, projectsRef, contact_meRef].forEach((sectionRef) => {
+      if (sectionRef !== ref && sectionRef.current) {
+        sectionRef.current.classList.remove("active");
+      }
+    });
+  };
   return (
-    <BrowserRouter className="">
-      <NavBar />
-      <Switch>
-        <Route path="/"  element={<HomePage />} />
-        <Route path="/ProjectDetail" element={<ProjectDetails />} />
-      </Switch>
-      <Footer />
-    </BrowserRouter>
+    <ProjectProvider>
+      <BrowserRouter className="">
+        <NavBar
+          skillRef={skillRef}
+          projectsRef={projectsRef}
+          contact_meRef={contact_meRef}
+          scrollToSection={scrollToSection}
+        />
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <HomePage
+                skillRef={skillRef}
+                projectsRef={projectsRef}
+                contact_meRef={contact_meRef}
+                scrollToSection={scrollToSection}
+              />
+            }
+          />
+          <Route path="/ProjectDetail" element={<ProjectDetail />} />
+          <Route path="/getCv" element={<CV/>} />
+        </Routes>
+        <Footer />
+      </BrowserRouter>
+    </ProjectProvider>
   );
 }
 

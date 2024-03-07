@@ -1,23 +1,33 @@
 import React, { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
-import { animateScroll as scroll } from "react-scroll";
+import { Link } from "react-router-dom"; 
 import { RxHamburgerMenu } from "react-icons/rx";
 import { ImCancelCircle } from "react-icons/im";
-const NavBar = ({skillRef,projectsRef,contact_meRef, scrollToSection }) => {
- 
+
+const NavBar = ({ skillRef, projectsRef, contact_meRef, scrollToSection }) => {
+  const pdfUrl = `${import.meta.env.VITE_REACT_APP_PDF_URL}`;
+  const openPdfInNewTab = () => {
+    const link = document.createElement("a");
+    link.href = pdfUrl;
+    link.rel = "noopener noreferrer";
+    document.body.appendChild(link);
+    console.log(pdfUrl);
+
+    link.click();
+    document.body.removeChild(link); // Clean up the anchor element
+  };
+
   const [showNavBar, setShowNavBar] = useState(false);
   const Toggle = () => {
     setShowNavBar(!showNavBar);
   }; 
-   const location = useLocation();
   const handleNavLinkClick = (sectionId) => {
-      // Pass the selected section as a URL parameter
-      scrollToSection(sectionId);
-    };
+    // Pass the selected section as a URL parameter
+    scrollToSection(sectionId);
+  };
   return (
     <div>
       <nav
-        className={`flex ${
+        className={`relative top-0 flex ${
           !showNavBar
             ? "flex-row"
             : "flex-col transition-all duration-700 ease-in-out"
@@ -28,7 +38,7 @@ const NavBar = ({skillRef,projectsRef,contact_meRef, scrollToSection }) => {
             <h2 className="text-3xl  font-bold cursor-pointer">Bekalu Atto</h2>
           </Link>
 
-          <div onClick={Toggle} className="md:collapse">
+          <div onClick={Toggle} className="md:collapse cursor-pointer">
             {!showNavBar ? (
               <RxHamburgerMenu size={35} />
             ) : (
@@ -42,36 +52,34 @@ const NavBar = ({skillRef,projectsRef,contact_meRef, scrollToSection }) => {
             showNavBar ? "flex w-full" : "hidden"
           } md:flex  md:flex-row flex-col md:gap-5  text-lg font-semibold`}
         >
-
-         
-          <Link to={{ pathname: '/', search: '?section=skill' }}   onClick={() => handleNavLinkClick(skillRef)}>
-            <h2
-              className="hover:bg-red-500 hover:text-white md:px-9 py-3 rounded-md cursor-pointer"
-            
-            >
+          <Link
+            to={{ pathname: "/", search: "?section=skill" }}
+            onClick={() => handleNavLinkClick(skillRef)}
+          >
+            <h2 className="hover:bg-red-500 hover:text-white md:px-9 py-3 rounded-md cursor-pointer">
               Skills
             </h2>
           </Link>
-          <Link  to={{ pathname: '/', search: '?section=projects' }}    onClick={() => handleNavLinkClick(projectsRef)}>
-            <h2
-              className="hover:bg-red-500 hover:text-white md:px-5 py-3 rounded-md cursor-pointer"
-              
-            >
+          <Link
+            to={{ pathname: "/", search: "?section=projects" }}
+            onClick={() => handleNavLinkClick(projectsRef)}
+          >
+            <h2 className="hover:bg-red-500 hover:text-white md:px-5 py-3 rounded-md cursor-pointer">
               Projects
             </h2>
           </Link>
-          <Link to={{ pathname: '/', search: '?section=contact_me' }}  onClick={() => handleNavLinkClick(contact_meRef)}>
-            <h2
-              className="hover:bg-red-500 hover:text-white  md:px-5 py-3 rounded-md cursor-pointer"
-              
-            >
+          <Link
+            to={{ pathname: "/", search: "?section=contact_me" }}
+            onClick={() => handleNavLinkClick(contact_meRef)}
+          >
+            <h2 className="hover:bg-red-500 hover:text-white  md:px-5 py-3 rounded-md cursor-pointer">
               Contact me
             </h2>
           </Link>
-          <Link to={"/getCv"}>
-          <h2 className="hover:bg-red-500 hover:text-white md:px-5 py-3   rounded-md cursor-pointer">
-            Get CV
-          </h2>
+          <Link onClick={openPdfInNewTab}>
+            <h2 className="hover:bg-red-500 hover:text-white md:px-5 py-3   rounded-md cursor-pointer">
+              Get CV
+            </h2>
           </Link>
         </div>
       </nav>

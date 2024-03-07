@@ -6,32 +6,24 @@ import Projects from "./projects";
 import SkillList from "./skill_list";
 import "../home_page.css";
 
-function HomePage({ skillRef, projectsRef, contact_meRef }) {
-  useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    const selectedSection = params.get("section");
-
-    // Scroll to the appropriate section based on the URL parameter
-    if (selectedSection === "skill") {
-      skillRef.current.scrollIntoView({ behavior: "smooth" });
-    } else if (selectedSection === "projects") {
-      projectsRef.current.scrollIntoView({ behavior: "smooth" });
-    } else if (selectedSection === "contact_me") {
-      contact_meRef.current.scrollIntoView({ behavior: "smooth" });
-    }
-  }, [skillRef, projectsRef, contact_meRef]);
+function HomePage({topRef, skillRef, projectsRef, contact_meRef,scrollToSection }) {
+   
+ 
 
   return (
     <div className="">
-      <About />
+      
+      <About  contact_meRef={contact_meRef} scrollToSection={scrollToSection}/>
+     
+      
       <AboutMe />
-      <div ref={skillRef} id="skill" className="scroll-sections1">
+      <div ref={skillRef}  >
         <SkillList />
       </div>
-      <div ref={projectsRef} id="projects" className="scroll-sections1">
+      <div ref={projectsRef}  >
         <Projects />{" "}
       </div>
-      <div ref={contact_meRef} id="contact_me" className="scroll-sections1">
+      <div ref={contact_meRef}  >
         <ContactMe />{" "}
       </div>
     </div>

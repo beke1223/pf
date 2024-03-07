@@ -1,32 +1,39 @@
-import React from 'react'; 
-import IJC from "../assets/ijc.pdf"; 
-import IJC1 from "../assets/IJC(SDD).pdf"; 
-import { PDFDownloadLink, PDFViewer } from '@react-pdf/renderer';
-import { Document, Page, Text } from '@react-pdf/renderer';
+import React, { useState } from "react";
 
-const MyDocument = () => (
-  <Document>
-    <Page>
-      <Text>Hello, this is my PDF content!</Text>
-       
-    </Page>
-  </Document>
-);
+const CV = () => {
+  const [page, setPage] = useState(1);
+  const canvasRef = useRef(null);
 
-const CV=()=> {
-  return  (
+  const { pdfDocument, pdfPage } = usePdf({
+    file: 'IJC(SDD).pdf',
+    page,
+    canvasRef,
+  });
+
+  return (
     <div>
-     <PDFViewer width="100%" height="500px">
-      <MyDocument/>
-       
-      </PDFViewer>
-      {/* <button className='h-8 ml-3 pt-2 text-blue-500 hover:border-b-[2px] hover:border-blue-500 '>DownLoad Cv</button>
-      <PDFDownloadLink document={<IJC1 />} fileName="cv@Bekalu-Atto.pdf">
-        {({ blob, url, loading, error }) =>
-          loading ? 'Loading document...' : 'Download now!'
-        }
-      </PDFDownloadLink> */}
+      {!pdfDocument && <span>Loading...</span>}
+      <canvas ref={canvasRef} />
+      {Boolean(pdfDocument && pdfDocument.numPages) && (
+        <nav>
+          <ul className="pager">
+            <li className="previous">
+              <button disabled={page === 1} onClick={() => setPage(page - 1)}>
+                Previous
+              </button>
+            </li>
+            <li className="next">
+              <button
+                disabled={page === pdfDocument.numPages}
+                onClick={() => setPage(page + 1)}
+              >
+                Next
+              </button>
+            </li>
+          </ul>
+        </nav>
+      )}
     </div>
   );
-}
+      }
 export default CV;

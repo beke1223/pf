@@ -28,7 +28,7 @@ const projectSet = [
 
 const Projects = () => {
   return (
-    <div className=" " id="Projects">
+    <div className=" " >
       <div className="bg-gray-300 mb-5 px-20">
         <h2 className="text-red-500 text-3xl py-4 font-extrabold stroke-slate-950">
           Projects
